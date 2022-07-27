@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #fff;
+            color: #fff;
+        }
+
+        .stage {
+            position: absolute;
+            min-width: 100vw;
+            min-height: 100vh;
+            top: 0;
+            left: 0;
+            background: linear-gradient(#000130, #3946cf);
+            overflow: hidden;
+            opacity: .8;
+        }
+
+        .star {
+            width: 1px;
+            height: 1px;
+            background-color: #fff;
+            position: absolute;
+        }
+
+        @keyframes flickr {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+        .shooting-star {
+            position: absolute;
+            left: 10px;
+            width: 100px;
+            height: 1px;
+            border-radius: 0 50% 50% 0;
+            background: linear-gradient(to left, rgba(255, 255, 255, .6), rgba(255, 255, 255, .0));
+            z-index: 999;
+        }
+
+        @keyframes shooting-star {
+            0% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) rotate(25deg);
+            }
+
+            10%,
+            100% {
+                opacity: 0;
+                transform: translate3d(851px, 364px, 0) rotate(25deg);
+            }
+        }
+
+        .Copyright {
+            position: absolute;
+            left: -80px;
+            width: 325px;
+            height: 68px;
+            text-align: center;
+            background-color: rgba(48, 48, 189, 0.4);
+            transform: rotate(-45deg);
+        }
+
+        .Copyright>p {
+            padding: 5px;
+            color: aliceblue;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .wheel {
+            width: 50vw;
+            height: 50vh;
+            margin: 5vh 10vw;
+            position: relative;
+        }
+
+        .pattern {
+            color: #fff;
+            width: 50%;
+            height: 50%;
+            position: relative;
+        }
+
+        .fan {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+            position: absolute;
+            top: 0;
+            overflow: hidden;
+            left: 0;
+        }
+
+        .inner {
+            width: 50%;
+            height: 100%;
+            transform: rotate(60deg);
+        }
+
+        .inner_style {
+            transform: inherit;
+            display: flex;
+            justify-content: center;
+        }
+
+        .fa-solid {
+            font-size: 50px;
+            position: absolute;
+            top: 225px;
+            left: 228px;
+            z-index: 1;
+            transform: rotate(360deg);
+            transition: all 2s;
+        }
+
+        h3 {
+            transform: rotate(5deg);
+        }
+
+        .text {
+            color: #fff;
+            max-width: 30vw;
+            max-height: 20vh;
+            position: absolute;
+            top: 20vh;
+            right: 15vw;
+        }
+
+        .IP {
+            font-size: 1.5rem;
+        }
+
+        footer div {
+            width: 98%;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 2px;
+            left: 1%;
+            right: 1%;
+            color: #fff;
+        }
+
+        @media screen and (max-width:1000px) {
+            h3 {
+                font-size: 1.0rem;
+            }
+
+            .text {
+                max-width: 90vw;
+                max-height: 100%;
+                position: absolute;
+                top: 70vh;
+                right: 5vw;
+            }
+        }
+
+        @media screen and (max-width:480px) {
+            .fan {
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+                position: absolute;
+                top: 0;
+                overflow: hidden;
+                left: 0;
+            }
+
+            .fa-solid {
+                font-size: 30px;
+                position: absolute;
+                top: 132px;
+                left: 130px;
+                z-index: 1;
+                transform: rotate(360deg);
+                transition: all 2s;
+            }
+
+            .text {
+                max-width: 90vw;
+                max-height: 20vh;
+                position: absolute;
+                top: 50vh;
+                right: 5vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 星星閃爍 -->
+    <div class="all">
+        <div class="frame">
+            <div class="stage"></div>
+        </div>
+        <div class="Copyright">
+            <p>
+                &copy; <br>Copyright 2022 <a href="http://ntc.im/" target="_blank" style="color:rgb(0, 0, 255)">
+                    NTC.im.</a>
+                <br> All rights
+                reserved.
+            </p>
+        </div>
+        <div class="wheel">
+            <div class="pattern">
+                <i class="fa-solid fa-location-arrow"></i>
+            </div>
+        </div>
+        <div class="text"></div>
+        <footer>
+            <div>
+                <p>
+                    Design by Smile⁽⁽٩(๑˃̶͈̀ ᗨ ˂̶͈́)۶⁾⁾<a href="https://github.com/s930175" target="_blank">My Github</a>
+                </p>
+    
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            let data = [];
+            let giftbox = [];
+            let IP;
+            $.ajax({
+                url: "https://api.ipify.org?format=json",
+                method: "GET",
+                dataType: "JSON",
+                success: function (res) {
+                    IP = res
+                    // console.log(IP)
+                }
+            })
+            function getData() {
+                $.get('./db.json', function (res) {
+                    // console.log(res)
+                    data = res;
+                    let preAngle = 360 / res.length;
+                    $.each(res, function (index, item) {
+                        // console.log(item.num)
+                        let fan = $(`<div class='fan'></div>`)
+                        let inner = $(`
+                        <div class='inner'>
+                            <div class="inner_style" style="transform:rotate(-${preAngle * index}deg);">
+                                <h3>${item.title}</h3>
+                            </div>
+                        </div>`)
+                        fan.css('transform', `rotate(${preAngle * index - 66}deg)`)
+                        // inner.css('transform', `rotate(${preAngle}deg)`)
+                        let piece = fan.append(inner);
+                        $('.pattern').append(piece)
+                        // 設置機率(來不及做)
+                        for (let i = 0; i < item.num; i++) {
+                            giftbox.push(index)
+                        }
+                    })
+                    // 處理機率(來不及做)
+                    let shuffle = function () {
+                        let num = Math.random() > 0.5 ? -1 : 1
+                        return num
+                    }
+                    // 處理機率陣列，把giftbox陣列裡的數字打亂(還是來不及做)
+                    let gift = giftbox.sort(shuffle).pop()
+                    // console.log(gift)
+                    // console.log(giftbox)
+                    // 愛的魔力轉圈圈
+                    // $('.fa-solid').on('click', function (){
+                    //     let starAngle = 0;
+                    //     let goAngle = starAngle + gift*preAngle+360*5
+
+
+                    // })
+                    $('.fa-solid').on('click', function () {
+                        let randomNum = Math.floor(Math.random() * 360)
+                        $('.fa-solid').css('transform', `rotate(${randomNum * 8 - 54}deg)`)
+                        // 文字顯示時間及對應的角度
+                        setTimeout(function () {
+                            if (randomNum * 8 % 360 <= preAngle) return $('.text').text(res[1].text).css('font-size', '1.1rem')
+                            else if (randomNum * 8 % 360 <= preAngle * 2 && randomNum * 8 % 360 >= preAngle) $('.text').text(IP.ip).css('font-size', '3rem')
+                            else if (randomNum * 8 % 360 <= preAngle * 3 && randomNum * 8 % 360 >= preAngle * 2) $('.text').text(res[3].text).css('font-size', '1.1rem')
+                            else if (randomNum * 8 % 360 <= preAngle * 4 && randomNum * 8 % 360 >= preAngle * 3) $('.text').text(IP.ip).css('font-size', '3rem')
+                            else if (randomNum * 8 % 360 <= preAngle * 5 && randomNum * 8 % 360 >= preAngle * 4) $('.text').text(res[5].text).css('font-size', '1.1rem')
+                            else $('.text').text(IP.ip).css('font-size', '3rem')
+                        }, 2000)
+                    })
+                })
+
+            }
+            getData()
+
+            // 星星閃爍動畫
+            let stage = document.querySelector('.stage');
+            let strStar = '';
+            // 創建星星div
+            for (let i = 0; i < 600; i++) {
+                strStar += `<div class="star" style="left:${Math.floor(Math.random() * 100)}vw;top:${Math.floor(Math.random() * 100)}vh;animation: ${2 + Math.floor(Math.random() * 2)}s flickr -${0 + Math.floor(Math.random() * 3)}s infinite;"></div>`;
+            }
+            // 流星div
+            for (let i = 0; i < 10; i++) {
+                strStar += `<div class="shooting-star" style="top:${Math.round(Math.random() * 100 + 50)}px;animation:${Math.round(Math.random() * 5 + 20)}s shooting-star -${Math.round(Math.random() * 250 / 10)}s infinite;"></div>`;
+            }
+            stage.innerHTML = strStar;
+        })
+
+    </script>
+</body>
+
+</html>
