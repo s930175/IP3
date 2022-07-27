@@ -165,7 +165,6 @@
             position: absolute;
             top: 20vh;
             right: 15vw;
-            font-size: 1.2rem;
         }
 
         .IP {
@@ -346,11 +345,11 @@
                         $('.fa-solid').css('transform', `rotate(${randomNum * 8 - 54}deg)`)
                         // 文字顯示時間及對應的角度
                         setTimeout(function () {
-                            if (randomNum * 8 % 360 <= preAngle) return $('.text').text(res[1].text).css('font-size', '1.1rem')
+                            if (randomNum * 8 % 360 <= preAngle) return $('.text').text(res[1].text).css('font-size', '1.2rem')
                             else if (randomNum * 8 % 360 <= preAngle * 2 && randomNum * 8 % 360 >= preAngle) $('.text').text(IP.ip).css('font-size', '3rem')
-                            else if (randomNum * 8 % 360 <= preAngle * 3 && randomNum * 8 % 360 >= preAngle * 2) $('.text').text(res[3].text).css('font-size', '1.1rem')
+                            else if (randomNum * 8 % 360 <= preAngle * 3 && randomNum * 8 % 360 >= preAngle * 2) $('.text').text(res[3].text).css('font-size', '1.2rem')
                             else if (randomNum * 8 % 360 <= preAngle * 4 && randomNum * 8 % 360 >= preAngle * 3) $('.text').text(IP.ip).css('font-size', '3rem')
-                            else if (randomNum * 8 % 360 <= preAngle * 5 && randomNum * 8 % 360 >= preAngle * 4) $('.text').text(res[5].text).css('font-size', '1.1rem')
+                            else if (randomNum * 8 % 360 <= preAngle * 5 && randomNum * 8 % 360 >= preAngle * 4) $('.text').text(res[5].text).css('font-size', '1.2rem')
                             else $('.text').text(IP.ip).css('font-size', '3rem')
                         }, 2000)
                     })
